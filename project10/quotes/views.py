@@ -17,7 +17,7 @@ def main(request, page=1):
     template_name = "quotes/index.html"
     db = get_mongodb()
     quotes = db.quoters.find()
-    paginator = Paginator.page(page)
+    paginator = Paginator(list(quotes), per_page)
     quotes_on_page = paginator.page(page)
     
     return render(
